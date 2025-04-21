@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/jquery-3.7.1.min.js"></script>
+</head>
+<body class="bg-green-900">
+    <div class="text-4xl text-white text-center  font-bold p-4">GALLERY</div>
+    <div class="flex justify-around  p-8 gap-4 items-center ">
+    
+    <img src="i1.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(0)" >
+    <img src="i2.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(1)">
+    <img src="i3.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(2)">
+    <img src="i4.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(3)">
+</div>
+<br>
+<br>
+
+    <div class="flex justify-around  p-8 gap-4 items-center ">
+    
+    <img id="img1" src="i5.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(0)" >
+    <img id="img1" src="i6.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(1)">
+    <img id="img1" src="i7.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(2)">
+    <img id="img1" src="i8.jpg" alt=""  class="w-80 h-64 rounded-2xl cursor-pointer hover:scale-110 transition border-2" onclick="addImg(3)">
+</div>
+<div>
+<div class="flex justify-center items-center bg-black/50 fixed inset-0 hidden" id="dummydiv">
+    <img src="" alt="" id="dummyimg" class="max-h-[80vh] rounded-2xl">
+    <button id="nexti" class="text-4xl bg-green-900 text-white font-bold rounded-full top-5 right-5 absolute p-7" onclick="removeImg()">X</button>
+    <button id="prei" class="text-4xl text-white bg-green-900 p-4 rounded-full absolute right-5 cursor-pointer" onclick="nextImg()" >></button>
+     <button class="text-4xl text-white bg-green-900 rounded-full p-4 absolute left-5 cursor-pointer" onclick="prevImg()" ><</button>   
+</div>
+<script>
+
+    const Images = [
+        "i1.jpg",
+        "i2.jpg",
+        "i3.jpg",
+        "i4.jpg",
+        "i5.jpg",
+        "i6.jpg",
+        "i7.jpg",
+        "i8.jpg",
+    ]
+
+    var currentIndex = 0;
+
+    function addImg(index){
+        currentIndex = index;        
+        document.getElementById("dummyimg").src = Images[currentIndex];
+        document.getElementById("dummydiv").classList.remove("hidden");
+        
+    }
+
+    function nextImg(){
+        currentIndex = ((currentIndex+1))%Images.length;
+        addImg(currentIndex);
+    }
+    function prevImg(){
+        currentIndex = ((currentIndex - 1)+Images.length)%Images.length;
+        addImg(currentIndex);
+    }
+    // function addImg(img1){
+    // document.getElementById("dummyimg").src = img1.src;
+    // document.getElementById("dummydiv").classList.remove("hidden");
+    // }
+
+    function removeImg(){
+        document.getElementById("dummydiv").classList.add("hidden");
+
+    }
+
+</script>
+</body>
+</html>
